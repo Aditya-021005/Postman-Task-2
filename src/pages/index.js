@@ -15,20 +15,20 @@ export default function Home() {
 
   const router = useRouter();
 
-  // Load Dark Mode Preference
+
   useEffect(() => {
     const darkMode = JSON.parse(localStorage.getItem("darkMode")) ?? false;
     setIsDarkMode(darkMode);
   }, []);
 
-  // Toggle Dark Mode
+
   const toggleDarkMode = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
     localStorage.setItem("darkMode", JSON.stringify(newMode));
   };
 
-  // Add to Watchlist
+
   const addToWatchlist = (coin) => {
     const existingWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
     if (!existingWatchlist.some(item => item.id === coin.id)) {
@@ -40,7 +40,7 @@ export default function Home() {
     }
   };
 
-  // Fetch Coins Data
+
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
@@ -67,11 +67,12 @@ export default function Home() {
     fetchData();
   }, [page]);
 
-  // Filter and Sort Data
+
   useEffect(() => {
     let result = [...coins];
 
-    // Search Filter
+
+    
     if (search) {
       result = result.filter(
         (coin) =>
@@ -80,14 +81,14 @@ export default function Home() {
       );
     }
 
-    // Market Cap Range Filter
+
     result = result.filter(
       (coin) =>
         coin.market_cap >= marketCapRange[0] &&
         coin.market_cap <= marketCapRange[1]
     );
 
-    // Sorting
+
     if (sortBy === "gainers") {
       result.sort(
         (a, b) =>
@@ -103,7 +104,7 @@ export default function Home() {
     setFilteredCoins(result);
   }, [search, marketCapRange, sortBy, coins]);
 
-  // Handle Page Change
+
   const handlePageChange = (newPage) => {
     if (newPage > 0) {
       setPage(newPage);
@@ -117,7 +118,7 @@ export default function Home() {
       </Head>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
+        {}
         <header className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
             Crypto Dashboard
@@ -137,7 +138,7 @@ export default function Home() {
 
         </header>
 
-        {/* Search and Filter */}
+        {}
         <div className="flex gap-4 mb-4">
           <input
             type="text"
@@ -164,7 +165,7 @@ export default function Home() {
           />
         </div>
 
-        {/* Sorting Buttons */}
+        {}
         <div className="flex gap-4 mb-4">
           {["default", "gainers", "losers"].map((type) => (
             <button
@@ -181,7 +182,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Table */}
+        {}
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -201,7 +202,7 @@ export default function Home() {
              key={coin.id}
              className={`cursor-pointer transition ${
                isDarkMode
-                 ? "hover:bg-gray-700" // Better contrast for dark mode
+                 ? "hover:bg-gray-700" 
                  : "hover:bg-gray-100"
              }`}
              onClick={() => router.push(`/coin/${coin.id}`)}
@@ -239,7 +240,7 @@ export default function Home() {
           </table>
         )}
 
-        {/* Pagination */}
+        {}
         <div className="flex justify-center mt-4 gap-4">
   <button
     onClick={() => handlePageChange(page - 1)}
