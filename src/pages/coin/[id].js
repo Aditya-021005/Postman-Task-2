@@ -20,7 +20,7 @@ export default function CoinDetail() {
       async function fetchCoinData() {
         setLoading(true);
         try {
-          // ✅ Direct CoinGecko API call (no proxy)
+
           const res = await axios.get(
             `https://api.coingecko.com/api/v3/coins/${id}`
           );
@@ -36,7 +36,7 @@ export default function CoinDetail() {
             }
           );
 
-          // ✅ Prepare chart data
+
           setChartData({
             labels: chartRes.data.prices.map(price =>
               new Date(price[0]).toLocaleDateString()
@@ -73,7 +73,7 @@ export default function CoinDetail() {
 
   return (
     <div className="container mx-auto p-4">
-      {/* Back Button */}
+      {}
       <button
         onClick={() => router.push('/')}
         className="mb-4 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded"
@@ -81,7 +81,7 @@ export default function CoinDetail() {
         ← Back
       </button>
 
-      {/* Coin Details */}
+      {}
       <h1 className="text-2xl font-bold mb-4">
         {coinData.name} ({coinData.symbol.toUpperCase()})
       </h1>
@@ -90,7 +90,7 @@ export default function CoinDetail() {
       <p>24h High: ${coinData.market_data?.high_24h?.usd}</p>
       <p>24h Low: ${coinData.market_data?.low_24h?.usd}</p>
 
-      {/* Chart Filter Buttons */}
+      {}
       <div className="flex space-x-4 my-4">
         <button
           onClick={() => setChartDays(7)}
@@ -118,7 +118,7 @@ export default function CoinDetail() {
         </button>
       </div>
 
-      {/* Price Trend Chart */}
+      {}
       {chartData ? (
  <div className="mb-6 bg-[#1e1e1e] p-4 rounded-lg shadow-md">
  <h2 className="text-lg font-bold mb-2">Price Trend</h2>
@@ -129,7 +129,7 @@ export default function CoinDetail() {
         <div className="text-center text-gray-500">No chart data available.</div>
       )}
 
-      {/* Additional Info */}
+      {}
       <div className="mt-6">
         <p><strong>Total Supply:</strong> {coinData.market_data?.total_supply?.toLocaleString() || 'N/A'}</p>
         <p><strong>Circulating Supply:</strong> {coinData.market_data?.circulating_supply?.toLocaleString() || 'N/A'}</p>
