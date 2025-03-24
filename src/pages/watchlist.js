@@ -19,7 +19,7 @@ export default function Watchlist() {
 
   return (
     <div className="container mx-auto p-4">
-      {/* ✅ Back Button */}
+      {}
       <button
         onClick={() => router.push('/')}
         className="mb-4 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded"
@@ -47,7 +47,7 @@ export default function Watchlist() {
               {watchlist.map((coin) => (
                 <tr
                   key={coin.id}
-                  onClick={() => router.push(`/coin/${coin.id}`)} // ✅ Restored Click Handler!
+                  onClick={() => router.push(`/coin/${coin.id}`)} 
                   className="cursor-pointer hover:bg-gray-100 transition duration-150 ease-in-out"
                 >
                   <td className="border px-4 py-2">{coin.name}</td>
@@ -60,7 +60,7 @@ export default function Watchlist() {
                   <td className="border px-4 py-2">
                     <button
                       onClick={(e) => {
-                        e.stopPropagation(); // ✅ Prevent row click when removing
+                        e.stopPropagation(); 
                         removeFromWatchlist(coin.id);
                       }}
                       className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
