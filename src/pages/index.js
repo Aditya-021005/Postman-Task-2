@@ -112,7 +112,10 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"}`}>
+   <div className={`min-h-screen transition-colors duration-300 ${isDarkMode 
+  ? "bg-gradient-to-br from-gray-800 to-black text-gray-100" 
+  : "bg-gradient-to-br from-blue-100 to-purple-200 text-gray-900"}`}>
+
       <Head>
         <title>Crypto Dashboard | Modern Tracker</title>
       </Head>
@@ -139,48 +142,77 @@ export default function Home() {
         </header>
 
         {}
-        <div className="flex gap-4 mb-4">
-          <input
-            type="text"
-            placeholder="Search by name or symbol..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full p-3 rounded border"
-          />
-          <input
-            type="number"
-            placeholder="Min Market Cap"
-            onChange={(e) =>
-              setMarketCapRange([Number(e.target.value), marketCapRange[1]])
-            }
-            className="p-3 rounded border w-1/3"
-          />
-          <input
-            type="number"
-            placeholder="Max Market Cap"
-            onChange={(e) =>
-              setMarketCapRange([marketCapRange[0], Number(e.target.value)])
-            }
-            className="p-3 rounded border w-1/3"
-          />
-        </div>
+<div className="flex gap-4 mb-6 relative">
+
+  
+  <input
+    type="text"
+    placeholder="Search by name or symbol..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className={`flex-1 p-3 rounded-lg bg-white/20 backdrop-blur-lg border ${
+      isDarkMode ? 'border-gray-700 text-gray-100' : 'border-gray-300 text-gray-800'
+    } shadow-md focus:outline-none focus:ring-2 ${
+      isDarkMode ? 'focus:ring-blue-500' : 'focus:ring-purple-500'
+    } transition duration-200 
+    hover:bg-white/30 hover:scale-105`}
+  />
+  
+  <input
+    type="number"
+    placeholder="Min Market Cap"
+    onChange={(e) =>
+      setMarketCapRange([Number(e.target.value), marketCapRange[1]])
+    }
+    className={`p-3 w-1/3 rounded-lg bg-white/20 backdrop-blur-lg border ${
+      isDarkMode ? 'border-gray-700 text-gray-100' : 'border-gray-300 text-gray-800'
+    } shadow-md focus:outline-none focus:ring-2 ${
+      isDarkMode ? 'focus:ring-blue-500' : 'focus:ring-purple-500'
+    } transition duration-200 
+    hover:bg-white/30 hover:scale-105`}
+  />
+  
+  <input
+    type="number"
+    placeholder="Max Market Cap"
+    onChange={(e) =>
+      setMarketCapRange([marketCapRange[0], Number(e.target.value)])
+    }
+    className={`p-3 w-1/3 rounded-lg bg-white/20 backdrop-blur-lg border ${
+      isDarkMode ? 'border-gray-700 text-gray-100' : 'border-gray-300 text-gray-800'
+    } shadow-md focus:outline-none focus:ring-2 ${
+      isDarkMode ? 'focus:ring-blue-500' : 'focus:ring-purple-500'
+    } transition duration-200 
+    hover:bg-white/30 hover:scale-105`}
+  />
+</div>
 
         {}
-        <div className="flex gap-4 mb-4">
-          {["default", "gainers", "losers"].map((type) => (
-            <button
-              key={type}
-              onClick={() => setSortBy(type)}
-              className={`px-4 py-2 rounded transition ${
-                sortBy === type
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 hover:bg-gray-300"
-              }`}
-            >
-              {type === "default" ? "Default" : type === "gainers" ? "Top Gainers" : "Top Losers"}
-            </button>
-          ))}
-        </div>
+<div className="flex gap-4 mb-6">
+  {["default", "gainers", "losers"].map((type) => (
+    <button
+      key={type}
+      onClick={() => setSortBy(type)}
+      className={`px-4 py-2 rounded-lg bg-white/20 backdrop-blur-lg shadow-md border ${
+        isDarkMode
+          ? "border-gray-700 text-gray-100"
+          : "border-gray-300 text-gray-800"
+      } ${
+        sortBy === type
+          ? isDarkMode
+            ? "bg-blue-500 text-white"
+            : "bg-purple-500 text-white"
+          : "hover:bg-white/30"
+      } focus:outline-none focus:ring-2 ${
+        isDarkMode ? "focus:ring-blue-500" : "focus:ring-purple-500"
+      } transition duration-200 
+      hover:scale-105`}
+    >
+      {type === "default" ? "Default" : type === "gainers" ? "Top Gainers" : "Top Losers"}
+    </button>
+  ))}
+</div>
+
 
         {}
         {loading ? (
